@@ -4,8 +4,8 @@ import {
   Routes,
   Route,
   Navigate,
-} from "react-router-dom";import { Toaster } from "react-hot-toast";
-
+} from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AdminLayout from "./component/dashboard/Admin/AdminLayout ";
