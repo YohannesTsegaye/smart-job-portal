@@ -6,6 +6,12 @@ pipeline {
   }
 
   stages {
+    stage('Clean Workspace') {
+      steps {
+        deleteDir() // Clean everything
+      }
+    }
+
     stage('Clone Repo') {
       steps {
         git branch: 'main', url: 'https://github.com/YohannesTsegaye/smart.git'
@@ -15,9 +21,15 @@ pipeline {
     stage('Install Frontend Dependencies') {
       steps {
         dir('frontend') {
-          // Ensure clean install
-          sh 'rm -rf node_modules package-lock.json'
-          sh 'npm install'
+          sh 'npm ci'
+        }
+      }
+    }
+
+    stage('Verify react-hot-toast Installed') {
+      steps {
+        dir('frontend') {
+          sh 'ls node_modules/react-hot-toast || echo "❌ react-hot-toast not found"'
         }
       }
     }
@@ -33,7 +45,7 @@ pipeline {
     stage('Install Backend Dependencies') {
       steps {
         dir('backend') {
-          sh 'npm install'
+          sh 'npm ci'
         }
       }
     }
