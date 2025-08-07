@@ -4,8 +4,7 @@ import {
   Routes,
   Route,
   Navigate,
-} from "react-router-dom";
-import { Toaster } from "react-hot-toast";
+} from "react-router-dom";import { Toaster } from "react-hot-toast";
 
 import "react-toastify/dist/ReactToastify.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
