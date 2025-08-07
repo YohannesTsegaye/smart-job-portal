@@ -12,9 +12,11 @@ pipeline {
       }
     }
 
-    stage('Install Frontend') {
+    stage('Install Frontend Dependencies') {
       steps {
         dir('frontend') {
+          // Ensure clean install
+          sh 'rm -rf node_modules package-lock.json'
           sh 'npm install'
         }
       }
@@ -28,7 +30,7 @@ pipeline {
       }
     }
 
-    stage('Install Backend') {
+    stage('Install Backend Dependencies') {
       steps {
         dir('backend') {
           sh 'npm install'
@@ -71,10 +73,10 @@ pipeline {
 
   post {
     failure {
-      echo "Build failed! Check errors above."
+      echo "❌ Build failed! Check errors above."
     }
     success {
-      echo "Build completed successfully!"
+      echo "✅ Build completed successfully!"
     }
   }
 }
